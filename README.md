@@ -57,7 +57,7 @@ just_prim_int = { version = "0.1.0" }
 
 [features]
 
-# https://doc.rust-lang.org/beta/unstable-book/language-features/marker-trait-attr.html
+## https://doc.rust-lang.org/beta/unstable-book/language-features/marker-trait-attr.html
 marker_trait_attr = ["just_prim_int/marker_trait_attr"]
 ```
 
