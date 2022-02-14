@@ -60,14 +60,31 @@ mod prim_signed_int {
     impl PrimSignedInt for isize {}
 }
 
+pub struct AbstrPrimIntZST;
+
+impl AbstrPrimIntZST {
+    pub const MAX_SIZE: usize = 16;
+    pub const MIN_SIZE: usize = 1;
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::PrimInt;
+    use crate::{ PrimInt, AbstrPrimIntZST };
 
     fn do_nothing_for_prim_int_ref<T: PrimInt>(_ref: &T) {}
 
     #[test]
     fn u8_is_prim_int() {
         do_nothing_for_prim_int_ref::<u8>(&5)
+    }
+
+    #[test]
+    fn max_size_of_abstr_prim_int_is_that_of_u128() {
+        assert_eq!(AbstrPrimIntZST::MAX_SIZE, core::mem::size_of::<u128>());
+    }
+
+    #[test]
+    fn min_size_of_abstr_prim_int_is_that_of_u8() {
+        assert_eq!(AbstrPrimIntZST::MIN_SIZE, core::mem::size_of::<u8>());
     }
 }
